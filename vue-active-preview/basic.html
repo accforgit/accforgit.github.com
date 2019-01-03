@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>vue-active-preview</title>
+  <link rel="stylesheet" href="VueActivePreview.css">
+  <style>
+    body { margin: 0; }
+  </style>
+  <script src="https://cdn.bootcss.com/vue/2.5.7/vue.min.js"></script>
+  <script src="VueActivePreview.umd.min.js"></script>
+</head>
+<body>
+  <div id="app"></div>
+</body>
+<script>
+  const ua = navigator.userAgent.toLocaleLowerCase()
+  if (ua.indexOf('android') === -1 && ua.indexOf('iphone') === -1) {
+    alert('请在移动端预览')
+  }
+
+  new Vue({
+    el: '#app',
+    template: `
+    <div>
+      <VueActivePreview :urlList="urlList" />
+    </div>
+    `,
+    components: {
+      VueActivePreview: VueActivePreview.default
+    },
+    data () {
+      return {
+        urlList: [
+        'https://dummyimage.com/200x400/FF9966?text=1',
+        'https://dummyimage.com/100x100/CCCC99?text=2',
+        'https://dummyimage.com/375x600/FF66FF?text=3',
+        'https://dummyimage.com/375x200/99CC99?text=4'
+        ]
+      }
+    }
+  })
+</script>
+</html>
