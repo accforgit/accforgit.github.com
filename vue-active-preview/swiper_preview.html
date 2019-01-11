@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>vue-active-preview</title>
+  <link rel="stylesheet" href="VueActivePreview.css">
+  <link rel="stylesheet" href="../vue-active-swiper/VueActiveSwiper.css">
+  <style>
+    body { margin: 0; }
+  </style>
+  <script src="https://cdn.bootcss.com/vue/2.5.7/vue.min.js"></script>
+  <script src="VueActivePreview.umd.min.js"></script>
+  <script src="../vue-active-swiper/VueActiveSwiper.umd.min.js"></script>
+</head>
+<body>
+  <div id="app"></div>
+</body>
+<script>
+  const ua = navigator.userAgent.toLocaleLowerCase()
+  if (ua.indexOf('android') === -1 && ua.indexOf('iphone') === -1) {
+    alert('请在移动端预览')
+  }
+
+  new Vue({
+    el: '#app',
+    template: `
+    <div>
+      <VueActivePreview
+        v-if="previewVisible"
+        :urlList="urlList"
+        :startIndex="startIndex"
+        @click="previewClick"
+        :autoPlayDelay="2500" />
+      <Swiper
+        ref="mySwiper"
+        :urlList="urlList"
+        :showCounter="true"
+        @click="swipeClick"
+        :autoPlayDelay="swiperAutoPlay" />
+      <input type="text" v-model="gotoIndex" />
+      <button @click="goto">goto</button>
+    </div>
+    `,
+    components: {
+      VueActivePreview: VueActivePreview.default,
+      Swiper: VueActiveSwiper.Swiper
+    },
+    data () {
+      return {
+        urlList: [
+        'https://dummyimage.com/200x400/FF9966?text=1',
+        'https://dummyimage.com/100x100/CCCC99?text=2',
+        'https://dummyimage.com/375x600/FF66FF?text=3',
+        'https://dummyimage.com/375x200/99CC99?text=4'
+        ],
+        gotoIndex: 0,
+        startIndex: 0,
+        previewVisible: false,
+        swiperAutoPlay: 2500
+      }
+    },
+    methods: {
+      swipeClick (index) {
+        this.swiperAutoPlay = -1
+        this.previewVisible = true
+        this.startIndex = index
+      },
+      previewClick (index) {
+        this.previewVisible = false
+        this.swiperAutoPlay = 1000
+      },
+      goto () {
+        this.$refs.mySwiper.goto(this.gotoIndex)
+      }
+    }
+  })
+</script>
+</html>
