@@ -13,3 +13,5 @@
 [Canvas绘制雷达图](https://accforgit.github.io/canvas%E7%BB%98%E5%88%B6%E9%9B%B7%E8%BE%BE%E5%9B%BE/index.html)
 
 [电商sku组合状态查询](https://accforgit.github.io/sku-manage/index.html)
+
+[uipx-webpack-plugin](https://accforgit.github.io/uipx-webpack-plugin/index.html)
