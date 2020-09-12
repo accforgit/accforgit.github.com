@@ -15,3 +15,5 @@
 [电商sku组合状态查询](https://accforgit.github.io/sku-manage/index.html)
 
 [uipx-webpack-plugin](https://accforgit.github.io/uipx-webpack-plugin/index.html)
+
+[vue-chart-tree](https://accforgit.github.io/vue-chart-tree/index.html)
